@@ -6,6 +6,7 @@ License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
 # Source0-md5:	13af25dd72aae68b39eaf557d62957a5
+Patch0:		%{name}-optflags.patch
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
 Requires:	cups
@@ -51,9 +52,14 @@ Splix Dell drivers to CUPS
 
 %prep
 %setup -q -n splix-%{version}
+%patch0 -p1
 
 %build
-%{__make} DISABLE_JBIG=1
+%{__make} \
+	CXX="%{__cxx}" \
+	OPTCXXFLAGS="%{rpmcxxflags}" \
+	OPTLDFLAGS="%{rpmldflags} %{rpmcxxflags}" \
+	DISABLE_JBIG=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
