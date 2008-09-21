@@ -27,7 +27,7 @@ printers.
 %package samsung
 Summary:	Splix Samsung drivers to CUPS
 Group:		Applications
-Requires:	cups-driver-splix = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description samsung
 Splix Samsung drivers to CUPS
@@ -35,7 +35,7 @@ Splix Samsung drivers to CUPS
 %package xerox
 Summary:	Splix Xerox drivers to CUPS
 Group:		Applications
-Requires:	cups-driver-splix = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description xerox
 Splix Xerox drivers to CUPS
@@ -43,12 +43,10 @@ Splix Xerox drivers to CUPS
 %package dell
 Summary:	Splix Dell drivers to CUPS
 Group:		Applications
-Requires:	cups-driver-splix = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description dell
 Splix Dell drivers to CUPS
-
-
 
 %prep
 %setup -q -n splix-%{version}
@@ -67,18 +65,16 @@ install -d $RPM_BUILD_ROOT%{_cupsfilterdir}
 install src/rastertospl2 $RPM_BUILD_ROOT%{_cupsfilterdir}
 ## samsung drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/samsung
-cp ppd/{cl{p,x}*,ml*} $RPM_BUILD_ROOT%{_cupsppddir}/samsung
+cp -a ppd/{cl{p,x}*,ml*} $RPM_BUILD_ROOT%{_cupsppddir}/samsung
 ## xerox drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/xerox
-cp ppd/ph* $RPM_BUILD_ROOT%{_cupsppddir}/xerox
+cp -a ppd/ph* $RPM_BUILD_ROOT%{_cupsppddir}/xerox
 ## dell drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/dell
-cp ppd/1100* $RPM_BUILD_ROOT%{_cupsppddir}/dell
+cp -a ppd/1100* $RPM_BUILD_ROOT%{_cupsppddir}/dell
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-
 
 %files
 %defattr(644,root,root,755)
@@ -89,7 +85,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_cupsppddir}/samsung
 %{_cupsppddir}/samsung/*
-
 
 %files xerox
 %defattr(644,root,root,755)
