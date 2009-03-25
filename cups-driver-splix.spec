@@ -1,13 +1,12 @@
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
-Version:	1.1.1
+Version:	2.0.0
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
-# Source0-md5:	13af25dd72aae68b39eaf557d62957a5
-Patch0:		%{name}-optflags.patch
+# Source0-md5:	f3aa735c22a926818b3d8b26c9964186
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
 Requires:	cups
@@ -68,7 +67,6 @@ Splix sterownik Della do CUPS
 
 %prep
 %setup -q -n splix-%{version}
-%patch0 -p1
 
 %build
 %{__make} \
@@ -80,7 +78,9 @@ Splix sterownik Della do CUPS
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_cupsfilterdir}
-install src/rastertospl2 $RPM_BUILD_ROOT%{_cupsfilterdir}
+install optimized/rastertoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
+install optimized/pstoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
+
 ## samsung drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/samsung
 cp -a ppd/{cl{p,x}*,ml*} $RPM_BUILD_ROOT%{_cupsppddir}/samsung
@@ -97,7 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog INSTALL README THANKS TODO
-%attr(755,root,root) %{_cupsfilterdir}/rastertospl2
+%attr(755,root,root) %{_cupsfilterdir}/rastertoqpdl
+%attr(755,root,root) %{_cupsfilterdir}/pstoqpdl
 
 %files samsung
 %defattr(644,root,root,755)
