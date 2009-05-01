@@ -1,4 +1,5 @@
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
+Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyomtatókhoz
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
@@ -24,6 +25,11 @@ Splix is a driver for printers that speak SPL (Samsung Printer
 Language). This includes printers made by Samsung and several Xerox
 printers.
 
+%description -l hu.UTF-8
+A splix meghajtókat tartalmaz SPL (Samsung Printer Language)
+nyomtatókhoz. Ezek a Samsung által gyártott nyomtatók és még néhány
+a Xerox termékei közül.
+
 %description -l pl.UTF-8
 Splix jest sterownikiem do drukarek obsługującym SPL (Samsung Printer
 Language). Wspiera modele wyprodukowane przez Samsunga jak również
@@ -31,6 +37,7 @@ niektóre drukarki Xeroksa.
 
 %package samsung
 Summary:	Splix Samsung drivers to CUPS
+Summary(hu.UTF-8):	Splix Samsung meghajtók CUPS-hoz
 Summary(pl.UTF-8):	Splix sterownik Samsunga do CUPS
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
@@ -38,11 +45,15 @@ Requires:	%{name} = %{version}-%{release}
 %description samsung
 Splix Samsung drivers to CUPS
 
+%description samsung -l hu.UTF-8
+Splix Samsung meghajtók CUPS-hoz.
+
 %description samsung -l pl.UTF-8
 Splix sterownik Samsunga do CUPS
 
 %package xerox
 Summary:	Splix Xerox drivers to CUPS
+Summary(hu.UTF-8):	Splix Xerox meghajtók CUPS-hoz
 Summary(pl.UTF-8):	Splix sterownik Xeroksa do CUPS
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
@@ -50,17 +61,24 @@ Requires:	%{name} = %{version}-%{release}
 %description xerox
 Splix Xerox drivers to CUPS
 
+%description xerox -l hu.UTF-8
+Splix Xerox meghajtók CUPS-hoz.
+
 %description xerox -l pl.UTF-8
 Splix sterownik Xeroksa do CUPS
 
 %package dell
 Summary:	Splix Dell drivers to CUPS
+Summary(hu.UTF-8):	Splix Dell meghajtók CUPS-hoz
 Summary(pl.UTF-8):	Splix sterownik Della do CUPS
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description dell
 Splix Dell drivers to CUPS
+
+%description dell -l hu.UTF-8
+Splix Dell meghajtók CUPS-hoz.
 
 %description dell -l pl.UTF-8
 Splix sterownik Della do CUPS
