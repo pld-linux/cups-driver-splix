@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
 # Source0-md5:	f3aa735c22a926818b3d8b26c9964186
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
+BuildRequires:	libstdc++-devel
 Requires:	cups
 Requires:	cups-clients
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
