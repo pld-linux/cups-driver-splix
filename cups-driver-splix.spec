@@ -3,7 +3,7 @@ Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyom
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
