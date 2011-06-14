@@ -3,11 +3,13 @@ Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyom
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
 # Source0-md5:	f3aa735c22a926818b3d8b26c9964186
+Source1:	http://splix.ap2c.org/samsung_cms.tar.bz2
+# Source1-md5:	51bf60a93575eb392ed6ad5d43e00e36
 Patch0:		gcc45.patch
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
@@ -86,7 +88,7 @@ Splix Dell meghajtók CUPS-hoz.
 Splix sterownik Della do CUPS
 
 %prep
-%setup -q -n splix-%{version}
+%setup -q -n splix-%{version} -a1
 %patch0 -p1
 
 %build
@@ -103,14 +105,16 @@ install optimized/rastertoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
 install optimized/pstoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
 
 ## samsung drivers
-install -d $RPM_BUILD_ROOT%{_cupsppddir}/samsung
+install -d $RPM_BUILD_ROOT%{_cupsppddir}/samsung/cms
 cp -a ppd/{cl{p,x}*,ml*} $RPM_BUILD_ROOT%{_cupsppddir}/samsung
+cp -a cms/* $RPM_BUILD_ROOT%{_cupsppddir}/samsung/cms
 ## xerox drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/xerox
 cp -a ppd/ph* $RPM_BUILD_ROOT%{_cupsppddir}/xerox
 ## dell drivers
 install -d $RPM_BUILD_ROOT%{_cupsppddir}/dell
 cp -a ppd/1100* $RPM_BUILD_ROOT%{_cupsppddir}/dell
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
