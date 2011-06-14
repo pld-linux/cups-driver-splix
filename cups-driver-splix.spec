@@ -3,16 +3,17 @@ Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyom
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	8
+Release:	9
 License:	GPL
 Group:		Applications
-Source0:	http://dl.sourceforge.net/splix/splix-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
 # Source0-md5:	f3aa735c22a926818b3d8b26c9964186
 Source1:	http://splix.ap2c.org/samsung_cms.tar.bz2
 # Source1-md5:	51bf60a93575eb392ed6ad5d43e00e36
 Patch0:		gcc45.patch
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
+BuildRequires:	jbigkit-devel
 BuildRequires:	libstdc++-devel
 Requires:	cups
 Requires:	cups-clients
@@ -31,8 +32,8 @@ printers.
 
 %description -l hu.UTF-8
 A splix meghajtókat tartalmaz SPL (Samsung Printer Language)
-nyomtatókhoz. Ezek a Samsung által gyártott nyomtatók és még néhány
-a Xerox termékei közül.
+nyomtatókhoz. Ezek a Samsung által gyártott nyomtatók és még néhány a
+Xerox termékei közül.
 
 %description -l pl.UTF-8
 Splix jest sterownikiem do drukarek obsługującym SPL (Samsung Printer
@@ -95,8 +96,7 @@ Splix sterownik Della do CUPS
 %{__make} \
 	CXX="%{__cxx}" \
 	OPTCXXFLAGS="%{rpmcxxflags}" \
-	OPTLDFLAGS="%{rpmldflags} %{rpmcxxflags}" \
-	DISABLE_JBIG=1
+	OPTLDFLAGS="%{rpmldflags} %{rpmcxxflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
