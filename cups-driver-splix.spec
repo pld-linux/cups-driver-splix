@@ -1,16 +1,17 @@
+%define	snap	20121025
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
 Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyomtatókhoz
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	10
+Release:	11.%{snap}.1
 License:	GPL
 Group:		Applications
-Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
-# Source0-md5:	f3aa735c22a926818b3d8b26c9964186
+# Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
+Source0:	splix-%{snap}.tar.bz2
+# Source0-md5:	1681508ba874da1a57dfaef28e15a9b8
 Source1:	http://splix.ap2c.org/samsung_cms.tar.bz2
 # Source1-md5:	51bf60a93575eb392ed6ad5d43e00e36
-Patch0:		gcc45.patch
 URL:		http://splix.sourceforge.net/
 BuildRequires:	cups-devel
 BuildRequires:	jbigkit-devel
@@ -89,8 +90,7 @@ Splix Dell meghajtók CUPS-hoz.
 Splix sterownik Della do CUPS
 
 %prep
-%setup -q -n splix-%{version} -a1
-%patch0 -p1
+%setup -q -n splix -a1
 
 %build
 %{__make} \
