@@ -4,7 +4,7 @@ Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyom
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	11.%{snap}.1
+Release:	11.%{snap}.2
 License:	GPL
 Group:		Applications
 # Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
@@ -89,6 +89,38 @@ Splix Dell meghajtók CUPS-hoz.
 %description dell -l pl.UTF-8
 Splix sterownik Della do CUPS
 
+%package lexmark
+Summary:	Splix Lexmark drivers to CUPS
+Summary(hu.UTF-8):	Splix Lexmark meghajtók CUPS-hoz
+Summary(pl.UTF-8):	Splix sterownik Lexmark do CUPS
+Group:		Applications
+Requires:	%{name} = %{version}-%{release}
+
+%description lexmark
+Splix Lexmark drivers to CUPS
+
+%description dell -l hu.UTF-8
+Splix Lexmark meghajtók CUPS-hoz.
+
+%description dell -l pl.UTF-8
+Splix sterownik Lexmark do CUPS
+
+%package toshiba
+Summary:	Splix Toshiba drivers to CUPS
+Summary(hu.UTF-8):	Splix Toshiba meghajtók CUPS-hoz
+Summary(pl.UTF-8):	Splix sterownik Toshiba do CUPS
+Group:		Applications
+Requires:	%{name} = %{version}-%{release}
+
+%description toshiba
+Splix Toshiba drivers to CUPS
+
+%description toshiba -l hu.UTF-8
+Splix Toshiba meghajtók CUPS-hoz.
+
+%description toshiba -l pl.UTF-8
+Splix sterownik Toshiba do CUPS
+
 %prep
 %setup -q -n splix -a1
 
@@ -100,21 +132,10 @@ Splix sterownik Della do CUPS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_cupsfilterdir}
-install optimized/rastertoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
-install optimized/pstoqpdl  $RPM_BUILD_ROOT%{_cupsfilterdir}
 
-## samsung drivers
-install -d $RPM_BUILD_ROOT%{_cupsppddir}/samsung/cms
-cp -a ppd/{cl{p,x}*,ml*} $RPM_BUILD_ROOT%{_cupsppddir}/samsung
-cp -a cms/* $RPM_BUILD_ROOT%{_cupsppddir}/samsung/cms
-## xerox drivers
-install -d $RPM_BUILD_ROOT%{_cupsppddir}/xerox
-cp -a ppd/ph* $RPM_BUILD_ROOT%{_cupsppddir}/xerox
-## dell drivers
-install -d $RPM_BUILD_ROOT%{_cupsppddir}/dell
-cp -a ppd/1100* $RPM_BUILD_ROOT%{_cupsppddir}/dell
-
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	CUPSFILTER=%{_cupsfilterdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,15 +148,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files samsung
 %defattr(644,root,root,755)
-%dir %{_cupsppddir}/samsung
-%{_cupsppddir}/samsung/*
+%{_cupsppddir}/samsung
 
 %files xerox
 %defattr(644,root,root,755)
-%dir %{_cupsppddir}/xerox
-%{_cupsppddir}/xerox/*
+%{_cupsppddir}/xerox
 
 %files dell
 %defattr(644,root,root,755)
-%dir %{_cupsppddir}/dell
-%{_cupsppddir}/dell/*
+%{_cupsppddir}/dell
+
+%files lexmark
+%defattr(644,root,root,755)
+%{_cupsppddir}/lexmark
+
+%files toshiba
+%defattr(644,root,root,755)
+%{_cupsppddir}/toshiba
