@@ -4,7 +4,7 @@ Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyom
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	11.%{snap}.2
+Release:	11.%{snap}.3
 License:	GPL
 Group:		Applications
 # Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
@@ -25,6 +25,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_cupsppddir	%{_datadir}/model
 %define 	_cupsfilterdir	%{_libdir}/filter
 %define 	_cupsfontsdir	%{_datadir}/fonts
+%define		_cupsprofilesdir	%{_datadir}/profiles
 
 %description
 Splix is a driver for printers that speak SPL (Samsung Printer
@@ -133,9 +134,14 @@ Splix sterownik Toshiba do CUPS
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_cupsprofilesdir}/samsung
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	CUPSFILTER=%{_cupsfilterdir}
+
+cp -a cms/* $RPM_BUILD_ROOT%{_cupsprofilesdir}/samsung
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -149,6 +155,8 @@ rm -rf $RPM_BUILD_ROOT
 %files samsung
 %defattr(644,root,root,755)
 %{_cupsppddir}/samsung
+%dir %{_cupsprofilesdir}
+%{_cupsprofilesdir}/samsung
 
 %files xerox
 %defattr(644,root,root,755)
