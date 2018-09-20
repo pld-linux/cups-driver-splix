@@ -1,10 +1,11 @@
 %define	snap	20131213
+%define	rel 	2
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
 Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyomtatókhoz
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
 Version:	2.0.0
-Release:	11.%{snap}.1
+Release:	11.%{snap}.%{rel}
 License:	GPL
 Group:		Applications
 # Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
