@@ -1,5 +1,5 @@
 %define	snap	20131213
-%define	rel 	2
+%define	rel 	3
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
 Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyomtatókhoz
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
