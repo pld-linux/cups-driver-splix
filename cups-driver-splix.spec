@@ -1,22 +1,21 @@
-%define	snap	20131213
-%define	rel 	3
 Summary:	A set of CUPS printer drivers for SPL (Samsung Printer Language) printers
 Summary(hu.UTF-8):	CUPS meghajtók sokasága SPL (Samsung Printer Language) nyomtatókhoz
 Summary(pl.UTF-8):	Zestaw sterowników do drukarek obsługujących SPL (Samsung Printer Language)
 Name:		cups-driver-splix
-Version:	2.0.0
-Release:	11.%{snap}.%{rel}
+Version:	2.0.1
+Release:	1
 License:	GPL
 Group:		Applications
-# Source0:	http://downloads.sourceforge.net/splix/splix-%{version}.tar.bz2
-Source0:	splix-%{snap}.tar.bz2
-# Source0-md5:	a06d3da63f5dc5617ecff3e4de2cf88e
+Source0:	https://github.com/OpenPrinting/splix/releases/download/%{version}/splix-%{version}.tar.xz
+# Source0-md5:	99a15ec82054ef4016fcaac07978ecc6
 Source1:	http://splix.ap2c.org/samsung_cms.tar.bz2
 # Source1-md5:	51bf60a93575eb392ed6ad5d43e00e36
-URL:		http://splix.sourceforge.net/
+URL:		https://openprinting.github.io/splix/
 BuildRequires:	cups-devel
 BuildRequires:	jbigkit-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires:	cups
 Requires:	cups-clients
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -101,10 +100,10 @@ Requires:	%{name} = %{version}-%{release}
 %description lexmark
 Splix Lexmark drivers to CUPS
 
-%description dell -l hu.UTF-8
+%description lexmark -l hu.UTF-8
 Splix Lexmark meghajtók CUPS-hoz.
 
-%description dell -l pl.UTF-8
+%description lexmark -l pl.UTF-8
 Splix sterownik Lexmark do CUPS
 
 %package toshiba
@@ -124,13 +123,14 @@ Splix Toshiba meghajtók CUPS-hoz.
 Splix sterownik Toshiba do CUPS
 
 %prep
-%setup -q -n splix -a1
+%setup -q -n splix-%{version} -a1
 
 %build
 %{__make} \
 	CXX="%{__cxx}" \
-	OPTCXXFLAGS="%{rpmcxxflags}" \
-	OPTLDFLAGS="%{rpmldflags} %{rpmcxxflags}"
+	OPTIM_CXXFLAGS="%{rpmcxxflags}" \
+	LDFLAGS="%{rpmldflags} %{rpmcxxflags}" \
+	V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -149,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog INSTALL README THANKS TODO
+%doc AUTHORS ChangeLog INSTALL README.md THANKS TODO
 %attr(755,root,root) %{_cupsfilterdir}/rastertoqpdl
 %attr(755,root,root) %{_cupsfilterdir}/pstoqpdl
 
